@@ -1,8 +1,7 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 0 * * 0"}] # every Sunday at midnight
+  schedule: [{cron: "0 * * * *"}] # Every hour
   workflow_dispatch:
-
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -11,9 +10,10 @@ jobs:
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: lgoensApex
+          template: classic
+          base: activity, community, repositories, metadata
           config_timezone: America/Mexico_City
-
-          base: activity, community, repositories
+          plugin_lines: yes
           plugin_contributors: yes
           plugin_contributors_base: all
           plugin_contributors_sections: commit, pr, lines
