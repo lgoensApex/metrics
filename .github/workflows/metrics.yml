@@ -1,7 +1,8 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 * * * *"}] # Every hour
+  schedule: [{cron: "0 0 * * 0"}]  # weekly
   workflow_dispatch:
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
@@ -10,10 +11,12 @@ jobs:
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: lgoensApex
-          template: classic
-          base: activity, community, repositories, metadata
           config_timezone: America/Mexico_City
-          plugin_lines: yes
+
+          base: activity, community, repositories
           plugin_contributors: yes
           plugin_contributors_base: all
           plugin_contributors_sections: commit, pr, lines
+          
+          output_action: commit
+          filename: metrics.svg
