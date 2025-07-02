@@ -1,6 +1,6 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 0 * * 0"}]  # weekly
+  schedule: [{cron: "0 0 * * 0"}]  # Every Sunday at midnight
   workflow_dispatch:
 
 jobs:
@@ -17,6 +17,10 @@ jobs:
           plugin_contributors: yes
           plugin_contributors_base: all
           plugin_contributors_sections: commit, pr, lines
-          
+
+          plugin_contributors_repositories: |
+            Apex-CS/Apex-ICy-Market-Backend
+            Apex-CS/Apex-ICy-Market-FrontEnd
+
           output_action: commit
-          filename: metrics.svg
+          filename: metrics2.svg
